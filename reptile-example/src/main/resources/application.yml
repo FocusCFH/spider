@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev  # 激活配置
+  application:
+    name: spider # 服务名称
+
+server:
+  port: 8091     # 服务端口
+  servlet:
+    context-path: ${spring.application.name}  # 服务uri
