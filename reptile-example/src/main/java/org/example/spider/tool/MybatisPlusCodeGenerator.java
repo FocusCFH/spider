@@ -106,6 +106,7 @@ public class MybatisPlusCodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);// 默认是false,自动lombok
+
         strategy.setInclude(tables);
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);

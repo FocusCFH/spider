@@ -8,6 +8,11 @@ spring:
     url: jdbc:postgresql://106.12.27.199:5432/agcim
     username: agcim
     password: agcim123
+  redis: # redis配置
+    host: 106.12.27.199
+    port: 6379
+    password: agcim-2020
+    database: 0
 
 server:
   port: 8091     # 服务端口
