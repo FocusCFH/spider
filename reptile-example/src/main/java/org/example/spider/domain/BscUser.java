@@ -14,10 +14,8 @@ import lombok.EqualsAndHashCode;
  * @since 2021-09-15
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class BscUser implements Serializable {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 主键
