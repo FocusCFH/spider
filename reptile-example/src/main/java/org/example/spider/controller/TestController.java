@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.example.spider.domain.BscUser;
+import org.example.spider.utils.RabbitMQUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -26,6 +27,10 @@ public class TestController {
     public static final String TOPIC_NAME = "system.log.topic.v1";
 
     @Autowired
+    private RabbitMQUtil rabbitMQUtil;
+
+
+    @Autowired
     private KafkaTemplate<String,BscUser> kafkaTemplate;
 
     @GetMapping(value = "/kafka")
@@ -42,5 +47,17 @@ public class TestController {
     public void consumer(BscUser record){
         log.info("--------》消费者接收主题数据：" + JSON.toJSONString(record));
     }
+
+    @GetMapping(value = "/rabbitmq")
+    public String testRabbitmq(){
+        BscUser bscUser = new BscUser();
+        bscUser.setId("11");
+        bscUser.setName("陈富豪1");
+        rabbitMQUtil.sendDirectMsg(bscUser);
+        log.info("-----------》发送队列消息：" + JSON.toJSONString(bscUser));
+        return JSON.toJSONString(bscUser);
+    }
+
+
 
 }

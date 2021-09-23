@@ -40,6 +40,11 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     template:
       default-topic: other-topic
+  rabbitmq: # rabbitmq配置
+    host: 106.12.27.199
+    port: 5672
+    username: admin
+    password: admin
 
 
 
@@ -47,3 +52,12 @@ spring:
 mybatis-plus:
   mapper-locations: classpath*:org/example/spider/mapper/**/*Mapper.xml
   type-aliases-package: org.example.spider.domain.*
+
+# ****************************************** person base config *******************************************************
+# RabbitMQ queue config
+mq:
+  direct:
+    queue: mq.direct.queue
+    exchange: mq.direct.exchange
+    routekey: mq.direct.routekey
+# kafka topic config

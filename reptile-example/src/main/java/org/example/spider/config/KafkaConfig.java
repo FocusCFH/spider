@@ -27,9 +27,6 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @EnableKafka
 public class KafkaConfig {
-//
-//    @Autowired
-//    private KafkaTemplate kafkaTemplate;
 
     public static final String TOPIC_NAME = "system.log.topic.v1";
 
@@ -53,14 +50,6 @@ public class KafkaConfig {
 //    public NewTopic updateTopic(){
 //        return new NewTopic(TOPIC_NAME,10, (short) 2);
 //    }
-//    @PostConstruct
-//    public boolean producer(){
-//        BscUser bscUser = new BscUser();
-//        bscUser.setId("1");
-//        bscUser.setName("陈富豪");
-//        kafkaTemplate.send(TOPIC_NAME,bscUser);
-//        log.info("-----------》生产者发送数据：" + JSON.toJSONString(bscUser));
-//        return true;
-//    }
+
 
 }
