@@ -1,4 +1,4 @@
-package org.example.spider.tianyancha;
+package org.example.spider.test.tianyancha;
 
 import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
