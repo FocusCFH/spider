@@ -1,4 +1,4 @@
-package org.example.spider.utils;
+package org.example.spider.config.redis.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

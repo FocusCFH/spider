@@ -1,6 +1,5 @@
-package org.example.spider.config.properties;
+package org.example.spider.config.mq;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +28,11 @@ public class RabbitMQConfigProperties {
      */
     public static String mqDirectRoutekeyName;
 
+    /**
+     * 队列监听消息的处理方法名称
+     */
+    public static String mqDirectListenerMethodName;
+
     @Value("${mq.direct.queue}")
     public void setMqDirectQueueName(String mqDirectQueueName) {
         RabbitMQConfigProperties.mqDirectQueueName = mqDirectQueueName;
@@ -42,5 +46,10 @@ public class RabbitMQConfigProperties {
     @Value("${mq.direct.routekey}")
     public void setMqDirectRoutekeyName(String mqDirectRoutekeyName) {
         RabbitMQConfigProperties.mqDirectRoutekeyName = mqDirectRoutekeyName;
+    }
+
+    @Value("${mq.direct.listener-method-name}")
+    public void setMqDirectListenerMethodName(String mqDirectListenerMethodName) {
+        RabbitMQConfigProperties.mqDirectListenerMethodName = mqDirectListenerMethodName;
     }
 }

@@ -1,9 +1,8 @@
 package org.example.spider.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
+import org.example.spider.config.redis.util.RedisUtil;
 import org.example.spider.domain.BscUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;

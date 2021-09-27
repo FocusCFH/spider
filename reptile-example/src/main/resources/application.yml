@@ -35,6 +35,7 @@ spring:
       # Kafka Consumer Listener 监听器配置
       listener:
         missing-topics-fatal: false # 消费监听接口监听的主题不存在时，默认会报错。所以通过设置为 false ，解决报错
+      enable-auto-commit: true
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -45,8 +46,6 @@ spring:
     port: 5672
     username: admin
     password: admin
-
-
 
 # mybatis plus配置
 mybatis-plus:
@@ -60,4 +59,9 @@ mq:
     queue: mq.direct.queue
     exchange: mq.direct.exchange
     routekey: mq.direct.routekey
+    listener-method-name: directListener
 # kafka topic config
+kafka:
+  consumer:
+    groupId: system.log.topic
+    topics: system.log.topic.v1,system.log.topic.v2,system.log.topic.v3,system.log.topic.v66

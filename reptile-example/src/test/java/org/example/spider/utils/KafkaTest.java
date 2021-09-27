@@ -1,14 +1,12 @@
 package org.example.spider.utils;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.example.spider.config.KafkaConfig;
 import org.example.spider.domain.BscUser;
+import org.example.spider.config.kafka.sender.KafkaProducerSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -21,17 +19,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class KafkaTest {
-    public static final String TOPIC_NAME = "system.log.topic.v1";
+public class KafkaTest{
 
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    KafkaProducerSender kafkaProducerSender;
+
     @Test
     public void testRedis(){
         BscUser bscUser = new BscUser();
-        bscUser.setId("1");
         bscUser.setName("陈富豪");
-        kafkaTemplate.send(TOPIC_NAME,bscUser);
-        log.info("-----------》生产者发送数据：" + JSON.toJSONString(bscUser));
+        for (int i = 0; i < 20 ; i ++){
+            bscUser.setId(String.valueOf(i));
+            kafkaProducerSender.producer("system.log.topic.v1",bscUser);
+        }
     }
 }
