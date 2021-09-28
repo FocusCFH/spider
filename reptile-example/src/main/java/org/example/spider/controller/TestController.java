@@ -2,6 +2,7 @@ package org.example.spider.controller;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.example.spider.common.result.template.ContentResultForm;
 import org.example.spider.config.kafka.KafkaAdminUtil;
 import org.example.spider.config.kafka.KafkaConfig;
 import org.example.spider.config.mq.RabbitMQConfigProperties;
@@ -75,6 +76,12 @@ public class TestController {
         log.info("-----------》发送队列消息2：" + JSON.toJSONString(bscUser));
         return JSON.toJSONString(bscUser);
     }
+
+    @GetMapping(value = "/exception")
+    public ContentResultForm testException() throws Exception {
+        throw new Exception("群居异常捕捉测试！");
+    }
+
 
 
 

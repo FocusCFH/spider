@@ -1,16 +1,8 @@
 package org.example.spider;
 
-import com.alibaba.fastjson.JSON;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.example.spider.domain.BscUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
-
-import javax.annotation.PostConstruct;
 
 /**
  * @ClassName SpiderApplication

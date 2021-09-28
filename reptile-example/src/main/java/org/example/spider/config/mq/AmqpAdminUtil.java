@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.spider.config.mq.common.ExchangeTypeEnum;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @Slf4j
+@DependsOn(value = {"rabbitMQConfigProperties"}) // 依赖又先后顺序
 public class AmqpAdminUtil {
 
     @Autowired
