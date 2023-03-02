@@ -4,22 +4,35 @@ server:
   servlet:
     context-path: /${spring.application.name}  # 服务uri
 
+#  ---------------------------- 单点登录配置 --------------------------------------------
+auth-server: http://localhost:20000/auth # 认证服务器地址
+security:
+  oauth2:
+    client:
+      client-id: client # 授权服务器配置的client id
+      client-secret: secret # 授权服务器配置的client secret
+      scope: all
+      access-token-uri: ${auth-server}/oauth/token # 获取access token接口
+      user-authorization-uri: ${auth-server}/oauth/authorize #  获取Authorization Code接口
+    resource:
+      token-info-uri: ${auth-server}/oauth/check_token # 验证token的接口
+#      user-info-uri: ${auth-server}/user # 一个可以获取认证授权的自定义接口，可以在授权服务器，也可以在其他服务器上
+#      prefer-token-info: true # 如果同时配置了token-info-uri 和 user-info-uri，这个现象设置使用哪个取验证授权
+jasypt:
+  encryptor:
+    password: abc123
+
 # ----------------------------- spring 配置 --------------------------------------------
 spring:
   profiles:
     active: dev  # 激活配置
   application:
     name: spider # 服务名称
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://106.12.27.199:5432/agcim
-    username: agcim
-    password: agcim123
   redis: # redis配置
     host: 106.12.27.199
     port: 6379
     password: agcim-2020
-    database: 0
+    database: 1
   kafka: # kafka 配置
     bootstrap-servers: 106.12.27.199:9092
     consumer:
@@ -46,12 +59,74 @@ spring:
     port: 5672
     username: admin
     password: admin
-
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:postgresql://172.18.33.224:5432/agcim_first_stage
+          username: postgres
+          password: a5e35d4bb6a8
+          driver-class-name: org.postgresql.Driver
+        slave_1:
+          url: jdbc:postgresql://212.129.241.60:5432/cfh_1
+          username: postgres
+          password: 123456
+          driver-class-name: org.postgresql.Driver
+#      seata: true
+#      seata-mode: at
+#  shardingsphere:
+#    # 展示修改以后的sql语句
+#    props:
+#      sql-show: true
+#    datasource:
+#      common:
+#        driver-class-name: org.postgresql.Driver
+#        type: com.zaxxer.hikari.HikariDataSource
+#      names: ds0
+#      ds0:
+#        jdbc-url: jdbc:postgresql://db.dev.augurit.com:5432/agcim_first_stage_dev
+#        username: agcim
+#        password: agcim123
+#    rules:
+#      sharding:
+#        key-generators:
+#          # 此处必须要配置，否则会导致报错，因为shardingsphere-jdbc-core-spring-boot-starter需要加载此项配置，官网的demo例子有错
+#          snowflake:
+#            type: SNOWFLAKE
+#            props:
+#              worker-id: 123
+#        sharding-algorithms:
+#          ass-agm-component-info-table-inline:
+#            type: INLINE
+#            props:
+#              # 此处写法必须是t_order$->{order_id % 4}不能写为t_order${order_id % 4}，yml不认这种写法
+#              algorithm-expression: ass_agm_component_info$->{slice_table_id%2}
+#          ass-agm-region-info-table-inline:
+#            type: INLINE
+#            props:
+#                algorithm-expression: ass_agm_region_info$->{slice_table_id%2}
+#        tables:
+#          ass_agm_component_info:
+#            # 配置t_order的分表的规则
+#            actual-data-nodes: ds0.ass_agm_component_info$->{0..1}
+#            table-strategy:
+#              standard:
+#                sharding-column: slice_table_id
+#                sharding-algorithm-name: ass-agm-component-info-table-inline
+#          ass_agm_region_info:
+#            # 配置t_order的分表的规则
+#            actual-data-nodes: ds0.ass_agm_region_info$->{0..1}
+#            table-strategy:
+#              standard:
+#                sharding-column: slice_table_id
+#                sharding-algorithm-name: ass-agm-region-info-table-inline
+#    enabled: true
 # mybatis plus配置
 mybatis-plus:
   mapper-locations: classpath*:org/example/spider/mapper/**/*Mapper.xml
-  type-aliases-package: org.example.spider.domain.*
-
+  type-aliases-package: org.example.spider.domain.*.yy
 # ****************************************** person base config *******************************************************
 # RabbitMQ queue config
 mq:
@@ -61,7 +136,19 @@ mq:
     routekey: mq.direct.routekey
     listener-method-name: directListener
 # kafka topic config
-kafka:
-  consumer:
-    groupId: system.log.topic
-    topics: system.log.topic.v1,system.log.topic.v2,system.log.topic.v3,system.log.topic.v66
+#kafka:
+#  consumer:
+#    groupId: system.log.topic
+#    topics: system.log.topic.v1,system.log.topic.v2,system.log.topic.v3,system.log.topic.v66shardingsphere.enabled=true.datasource.url=jdbc:postgresql://db.dev.augurit.com:5432/agcim_first_stage_dev
+seata:
+  tx-service-group: my_test_tx_group
+  registry:
+    type: file
+  service:
+    grouplist:
+      default: 212.129.241.60:8091
+    enable-degrade: false
+    disable-global-transaction: false
+    vgroup-mapping:
+      my_test_tx_group: default
+  enabled: true

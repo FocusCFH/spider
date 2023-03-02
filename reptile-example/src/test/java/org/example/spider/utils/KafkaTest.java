@@ -1,7 +1,7 @@
 package org.example.spider.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.spider.domain.BscUser;
+//import org.example.spider.domain.BscUser;
 import org.example.spider.config.kafka.sender.KafkaProducerSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,13 +24,13 @@ public class KafkaTest{
     @Autowired
     KafkaProducerSender kafkaProducerSender;
 
-    @Test
-    public void testRedis(){
-        BscUser bscUser = new BscUser();
-        bscUser.setName("陈富豪");
-        for (int i = 0; i < 20 ; i ++){
-            bscUser.setId(String.valueOf(i));
-            kafkaProducerSender.producer("system.log.topic.v1",bscUser);
-        }
-    }
+//    @Test
+//    public void testRedis(){
+//        BscUser bscUser = new BscUser();
+//        bscUser.setName("陈富豪");
+//        for (int i = 0; i < 20 ; i ++){
+//            bscUser.setId(String.valueOf(i));
+//            kafkaProducerSender.producer("system.log.topic.v1",bscUser);
+//        }
+//    }
 }

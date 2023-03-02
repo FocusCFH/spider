@@ -19,9 +19,9 @@ import java.util.concurrent.TimeUnit;
  * @Date 2021/9/17 13:40
  * @Version 1.0
  **/
-@Configuration
-@Slf4j
-@EnableKafka
+//@Configuration
+//@Slf4j
+//@EnableKafka
 public class KafkaConfig {
 
     @Autowired

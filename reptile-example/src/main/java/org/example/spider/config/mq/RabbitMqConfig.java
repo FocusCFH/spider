@@ -21,7 +21,7 @@ import java.util.Map;
  * @Date 2021/9/22 11:43
  * @Version 1.0
  **/
-@Configuration
+//@Configuration
 @Slf4j
 public class RabbitMqConfig {
 

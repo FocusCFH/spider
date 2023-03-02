@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
  * @Date 2021/9/16 16:34
  * @Version 1.0
  **/
-@Configuration
+//@Configuration
 public class RedisConfig {
     @Bean
     @ConditionalOnMissingBean(name = "redisTemplate")

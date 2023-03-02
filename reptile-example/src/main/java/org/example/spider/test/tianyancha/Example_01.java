@@ -179,8 +179,14 @@ public class Example_01 {
         System.out.println();
     }
 
-    public static void main( String[] args ) throws IOException {
-        spiderTianYanCha();
+    public static void main(String[] args ) throws IOException {
+//        spiderTianYanCha();
+
+
+        List<CompanyModel> cl = null;
+        for (CompanyModel c :cl){
+            System.out.println(c);
+        }
     }
 
 }

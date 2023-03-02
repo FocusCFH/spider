@@ -35,6 +35,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- oauth2-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-oauth2</artifactId>
+    </dependency>
     <!--rabbitmq-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -110,6 +115,45 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
       <version>4.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/shardingsphere-jdbc-core-spring-boot-starter -->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.shardingsphere</groupId>-->
+<!--      <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>-->
+<!--      <version>5.0.0-alpha</version>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>5.7.17</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.baomidou/dynamic-datasource-spring-boot-starter -->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+      <version>3.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.15</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.15</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.seata/seata-spring-boot-starter -->
+    <dependency>
+    <groupId>io.seata</groupId>
+    <artifactId>seata-spring-boot-starter</artifactId>
+    <version>1.4.2</version>
+  </dependency>
+
+    <dependency>
+      <groupId>com.dameng</groupId>
+      <artifactId>DmJdbcDriver18</artifactId>
+      <version>8.1.2.141</version>
     </dependency>
   </dependencies>
 

@@ -1,6 +1,6 @@
 package org.example.spider.config.mq.sender;
 
-import org.example.spider.domain.BscUser;
+//import org.example.spider.domain.BscUser;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,9 +18,9 @@ public class RabbitMQSender {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public boolean sendDirectMsg(String exchangeName, String routeKey,BscUser bscUser){
-        rabbitTemplate.convertAndSend(exchangeName,routeKey,bscUser);
-        return true;
-    }
+//    public boolean sendDirectMsg(String exchangeName, String routeKey,BscUser bscUser){
+//        rabbitTemplate.convertAndSend(exchangeName,routeKey,bscUser);
+//        return true;
+//    }
 
 }
